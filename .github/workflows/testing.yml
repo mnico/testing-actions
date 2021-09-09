@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: mnico/sumar@v1
+      - uses: ./.github/workflows/mnico/sumar
         name: Sumar
         with:
           a: 5
