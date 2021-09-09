@@ -1,0 +1,21 @@
+name: 'Sumar'
+description: 'Dado dos números imprimirá el resultado'
+inputs:
+  a:
+    description: 'First value'
+    required: true
+  b:
+    description: 'Second value'
+    required: true
+outputs:
+  random-number:
+    description: "Resultado"
+    value: ${{ steps.suma.outputs.random-id }}
+runs:
+  using: "composite"
+  steps:
+    - run: echo "Operación ${{ inputs.a }} + ${{ inputs.b }}."
+      shell: bash
+    - id: suma
+      run: echo "::set-output name=random-id::$(echo $[${{ inputs.a }} + ${{ inputs.b }}] )"
+      shell: bash
