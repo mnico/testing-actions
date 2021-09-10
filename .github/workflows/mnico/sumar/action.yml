@@ -14,8 +14,8 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - run: echo "Operación ${{ inputs.a }} + ${{ inputs.b }}."
+    - run: echo "Operación ${{ inputs.a }} + ${{ inputs.b }} + ${{ secrets.SECRET_VALUE }}."
       shell: bash
     - id: suma
-      run: echo "::set-output name=resultado::$(echo $[${{ inputs.a }} + ${{ inputs.b }}] )"
+      run: echo "::set-output name=resultado::$(echo $[${{ inputs.a }} + ${{ inputs.b }} + ${{ secrets.SECRET_VALUE }}] )"
       shell: bash
