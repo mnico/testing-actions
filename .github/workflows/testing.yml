@@ -27,6 +27,7 @@ jobs:
   vpn:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Install OpenVPN
         run: |
           sudo apt update
@@ -37,4 +38,6 @@ jobs:
         env:
           OVPN_CONTENT : ${{ secrets.VPN_CONTENT }} 
       - name: Connect to VPN
-        run: sudo openvpn --config client.ovpn
+        uses: "kota65535/github-openvpn-connect-action@v1"
+        with:
+          config_file: ./client.ovpn
