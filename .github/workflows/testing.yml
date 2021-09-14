@@ -32,11 +32,9 @@ jobs:
           sudo apt update
           sudo apt install -y openvpn openvpn-systemd-resolved
       - name: Create client.ovpn file
-        run: echo $OVPN_CONTENT >> ./client.ovpn
+        run: 'echo "$OVPN_CONTENT" > client.ovpn'
         shell: bash
         env:
           OVPN_CONTENT : ${{ secrets.VPN_CONTENT }} 
       - name: Connect to VPN
-        uses: "kota65535/github-openvpn-connect-action@v1"
-        with:
-          config_file: ./client.ovpn
+        run: sudo openvpn --config client.ovpn
